@@ -8,6 +8,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <h1>Create Table</h1>
+        <form action="createTable">
+        	<input type="submit" value="Create">
+        </form>
     </body>
 </html>

@@ -5,12 +5,26 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	private String nombre;
 	private String apellido;
 	private String cedula;
 	private String email;
 	private String password;
 	
+	public Usuario() {
+		
+	}
+
+	public Usuario(Integer id, String nombre, String apellido, String cedula, String email, String password) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cedula = cedula;
+		this.email = email;
+		this.password = password;
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -43,6 +57,17 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", email="
+				+ email + ", password=" + password + "]";
+	}	
 
 }

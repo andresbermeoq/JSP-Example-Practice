@@ -17,13 +17,14 @@ public class ContextJDBC {
 	
 	
 	public ContextJDBC() {
-		
+		this.connectBD();
 	}
 	
 	public void connectBD() {
 		try {
 			Class.forName(DRIVER);
 			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			System.out.println("Connection Succesful....");
 			this.statement = connection.createStatement();
 		} catch (ClassNotFoundException e) {
 			System.out.println("----WARNING (JDBC:Connect).......problems with the driver\n" + e.getMessage());
