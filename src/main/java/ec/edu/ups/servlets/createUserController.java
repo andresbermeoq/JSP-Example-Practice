@@ -31,21 +31,33 @@ public class createUserController extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		System.out.println("Create User inicialized....");
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.getWriter().append("Creado User: ").append(req.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			usuario.setId(Integer.valueOf(request.getParameter("id")));
-			usuario.getNombre(request.getParameter("nombre"));
+			usuario.setNombre(request.getParameter("nombre"));
+			usuario.setApellido(request.getParameter("apellido"));
+			usuario.setCedula(request.getParameter("cedula"));
+			usuario.setEmail(request.getParameter("email"));
+			usuario.setPassword(request.getParameter("password"));
+			
+			usuarioDAO.create(usuario);
+			
 			response.getWriter().append("Creado User: ").append(request.getContextPath());
 		} catch (Exception e) {
 			response.getWriter().append("Error: ").append(e.getMessage());
 		}
+		
 	}
 
 }

@@ -18,19 +18,19 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 				+ " Apellido text,"
 				+ " Cedula text,"
 				+ " Email text,"
-				+ " Password text"
+				+ " Pass text"
 				+ ")");
 		
 	}
 
 	public void create(Usuario entity) {
-		conection.updateBD("INSERT Usuario VALUES ("
+		conection.updateBD("INSERT INTO Usuario VALUES ("
 				+ entity.getId() + ", "
-				+ entity.getNombre() + ", "
-				+ entity.getApellido() + ", "
-				+ entity.getCedula() + ", "
-				+ entity.getEmail() + ", "
-				+ entity.getPassword() + ")"
+				+ "'" + entity.getNombre() + "', "
+				+ "'" + entity.getApellido() + "', "
+				+ "'" + entity.getCedula() + "', "
+				+ "'" + entity.getEmail() + "', "
+				+ "'" + entity.getPassword() + "')"
 		);
 	}
 
@@ -63,12 +63,12 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 
 	public List<Usuario> find() {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		ResultSet resultSet = conection.queryBD("SELECT * FROM Usuario");
+		ResultSet resultSet = conection.queryBD("SELECT * FROM public.Usuario");
 		
 		try {
 			while (resultSet.next()) {
 				usuarios.add(new Usuario(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getString("apellido"), 
-						resultSet.getString("cedula"), resultSet.getString("email"), resultSet.getString("password")));
+						resultSet.getString("cedula"), resultSet.getString("email"), resultSet.getString("pass")));
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());

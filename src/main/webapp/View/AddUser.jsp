@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Create User</h1>
+	<h1>Create User Andres</h1>
 	
 	<form action="createUser" method="post">
 		ID: <input type="text" name="id">
@@ -17,7 +17,12 @@
 		Cedula: <input type="text" name="cedula">
 		Email: <input type="text" name="email">
 		Password: <input type="text" name="password">
+		<br>
 		<input type="submit" value="Crear Usuario">
+	</form>
+	
+	<form action="listUser" method="get">
+		<input type="submit" value="List Users">
 	</form>
 
 </body>
