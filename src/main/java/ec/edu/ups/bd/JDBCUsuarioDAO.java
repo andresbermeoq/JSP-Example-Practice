@@ -13,19 +13,21 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 	public void createTable() {
 		conection.updateBD("DROP TABLE IF EXISTS Usuario");
 		conection.updateBD("CREATE TABLE public.Usuario ("
-				+ "ID integer,"
+				+ " id Serial PRIMARY KEY,"
 				+ " Nombre text,"
 				+ " Apellido text,"
 				+ " Cedula text,"
 				+ " Email text,"
-				+ " Pass text"
+				+ " Pass text,"
+				+ " UNIQUE(Cedula)"
 				+ ")");
 		
 	}
 
 	public void create(Usuario entity) {
-		conection.updateBD("INSERT INTO Usuario VALUES ("
-				+ entity.getId() + ", "
+		conection.updateBD("INSERT INTO public.Usuario ("
+				+ "	 nombre, apellido, cedula, email, pass)"
+				+ "	VALUES ("
 				+ "'" + entity.getNombre() + "', "
 				+ "'" + entity.getApellido() + "', "
 				+ "'" + entity.getCedula() + "', "

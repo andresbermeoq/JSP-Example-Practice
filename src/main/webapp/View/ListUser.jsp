@@ -10,7 +10,6 @@
 
 	<h1>List of the User</h1>
 	
-	<% request.getAttribute("usuarios") %>
 	
 
 </body>

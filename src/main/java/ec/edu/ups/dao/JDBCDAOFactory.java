@@ -1,5 +1,6 @@
 package ec.edu.ups.dao;
 
+import ec.edu.ups.bd.JDBCTelefonoDAO;
 import ec.edu.ups.bd.JDBCUsuarioDAO;
 
 public class JDBCDAOFactory extends FactoryDAO {
@@ -13,6 +14,11 @@ public class JDBCDAOFactory extends FactoryDAO {
 	@Override
 	public UsuarioDAO getUsuarioDAO() {
 		return new JDBCUsuarioDAO();
+	}
+
+	@Override
+	public TelefonoDAO getTelefonoDAO() {
+		return new JDBCTelefonoDAO();
 	}
 
 }

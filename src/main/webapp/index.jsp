@@ -9,9 +9,22 @@
     </head>
     <body>
         
-        <h1>Create Table</h1>
+        <h1>Registro de Usuarios</h1>
+        <form action="createUser">
+        	<input type="submit" value="Create User">
+        </form>
+        
+        <form action="createPhone">
+        	<input type="submit" value="Create Phone">
+        </form>
+        
+        
         <form action="createTable">
-        	<input type="submit" value="Create">
+        	<input type="submit" value="Create Table">
+        </form>
+        
+        <form action="createTablePhone">
+        	<input type="submit" value="Create Table Phone">
         </form>
     </body>
 </html>

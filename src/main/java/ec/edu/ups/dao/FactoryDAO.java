@@ -10,5 +10,6 @@ public abstract class FactoryDAO {
 	
 	public abstract void createTables();
 	public abstract UsuarioDAO getUsuarioDAO();
+	public abstract TelefonoDAO getTelefonoDAO();
 
 }

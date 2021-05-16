@@ -1,6 +1,7 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Usuario implements Serializable {
 
@@ -11,6 +12,7 @@ public class Usuario implements Serializable {
 	private String cedula;
 	private String email;
 	private String password;
+	private List<Telefono> telefonos;
 	
 	public Usuario() {
 		
@@ -68,6 +70,14 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", email="
 				+ email + ", password=" + password + "]";
+	}
+
+	public List<Telefono> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<Telefono> telefonos) {
+		this.telefonos = telefonos;
 	}	
 
 }

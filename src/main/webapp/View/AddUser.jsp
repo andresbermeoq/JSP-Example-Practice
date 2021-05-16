@@ -8,10 +8,9 @@
 </head>
 <body>
 
-	<h1>Create User Andres</h1>
+	<h1>Crear Usuario</h1>
 	
 	<form action="createUser" method="post">
-		ID: <input type="text" name="id">
 		Nombre: <input type="text" name="nombre">
 		Apellido: <input type="text" name="apellido">
 		Cedula: <input type="text" name="cedula">

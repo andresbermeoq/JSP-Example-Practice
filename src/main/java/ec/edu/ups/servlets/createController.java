@@ -31,7 +31,7 @@ public class createController extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("Create Table Servlet Inicialized....");
+		System.out.println("Create Table User Servlet Inicialized....");
 	}
 
 	/**

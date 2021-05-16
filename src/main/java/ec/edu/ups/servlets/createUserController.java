@@ -36,7 +36,7 @@ public class createUserController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().append("Creado User: ").append(req.getContextPath());
+		req.getRequestDispatcher("/View/AddUser.jsp").forward(req, resp);
 	}
 
 	/**
@@ -44,7 +44,6 @@ public class createUserController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			usuario.setId(Integer.valueOf(request.getParameter("id")));
 			usuario.setNombre(request.getParameter("nombre"));
 			usuario.setApellido(request.getParameter("apellido"));
 			usuario.setCedula(request.getParameter("cedula"));
@@ -52,8 +51,6 @@ public class createUserController extends HttpServlet {
 			usuario.setPassword(request.getParameter("password"));
 			
 			usuarioDAO.create(usuario);
-			
-			response.getWriter().append("Creado User: ").append(request.getContextPath());
 		} catch (Exception e) {
 			response.getWriter().append("Error: ").append(e.getMessage());
 		}

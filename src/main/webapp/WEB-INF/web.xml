@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://Java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app version="2.4" 
+		 xmlns="http://Java.sun.com/xml/ns/j2ee" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<servlet>
-		<description>
-		</description>
 		<display-name>createController</display-name>
 		<servlet-name>createController</servlet-name>
 		<servlet-class>ec.edu.ups.servlets.createController</servlet-class>
 	</servlet>
 	<servlet>
-		<description>
-		</description>
 		<display-name>createUserController</display-name>
 		<servlet-name>createUserController</servlet-name>
 		<servlet-class>ec.edu.ups.servlets.createUserController</servlet-class>
 	</servlet>
 	<servlet>
-		<description>
-		</description>
 		<display-name>ListUserController</display-name>
 		<servlet-name>ListUserController</servlet-name>
 		<servlet-class>ec.edu.ups.servlets.ListUserController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>createTablePhoneController</display-name>
+		<servlet-name>createTablePhoneController</servlet-name>
+		<servlet-class>ec.edu.ups.servlets.createTablePhoneController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CreatePhoneController</display-name>
+		<servlet-name>CreatePhoneController</servlet-name>
+		<servlet-class>ec.edu.ups.servlets.CreatePhoneController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>createController</servlet-name>
@@ -33,6 +44,14 @@
 		<servlet-name>ListUserController</servlet-name>
 		<url-pattern>/listUser</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createTablePhoneController</servlet-name>
+		<url-pattern>/createTablePhone</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatePhoneController</servlet-name>
+		<url-pattern>/createPhone</url-pattern>
+	</servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -40,5 +59,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        </welcome-file-list>
-    </web-app>
+    </welcome-file-list>
+</web-app>
