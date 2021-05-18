@@ -1,8 +1,6 @@
 package ec.edu.ups.servlets;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,29 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.FactoryDAO;
+import ec.edu.ups.dao.TelefonoDAO;
 import ec.edu.ups.dao.UsuarioDAO;
+import ec.edu.ups.modelo.Telefono;
 import ec.edu.ups.modelo.Usuario;
 
 /**
- * Servlet implementation class ListUserController
+ * Servlet implementation class deletePhoneController
  */
-public class ListUserController extends HttpServlet {
+public class deletePhoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UsuarioDAO usuarioDAO;
-	private List<Usuario> usuarios;
+	private TelefonoDAO telefonoDAO;
+	private Telefono telefono;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListUserController() {
-        usuarioDAO = FactoryDAO.getFactoryDAO().getUsuarioDAO();
+    public deletePhoneController() {
+    	telefonoDAO = FactoryDAO.getFactoryDAO().getTelefonoDAO();
+    	telefono = new Telefono();
     }
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("List of The User");
+		System.out.println("Delete....");
 	}
 
 	/**
@@ -40,15 +41,26 @@ public class ListUserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = null;
+		String codigo = request.getParameter("codigo");
+		
+		System.out.println(codigo);
+		
 		try {
-			usuarios = usuarioDAO.find();
-			System.out.println("List Size: " + usuarios.size());
-			request.setAttribute("usuarios", usuarios);
-			url = "/Practice-JSP/View/ListUser.jsp";
+			telefono.setCodigo(Integer.valueOf(codigo));
+			telefonoDAO.delete(telefono);
+			url = "/View/UserIndex.jsp";
 		} catch (Exception e) {
-			response.getWriter().append("Error: ").append(e.getMessage());
+			url = "/View/Error/Error.html";
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
 
-public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements UsuarioDAO {
+public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, String> implements UsuarioDAO {
 
 	public void createTable() {
 		conection.updateBD("DROP TABLE IF EXISTS Usuario");
@@ -36,20 +36,21 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		);
 	}
 
-	public Usuario read(Integer id) {
+	public Usuario read(String cedula) {
 		Usuario usuario = null;
-		ResultSet resultSet = conection.queryBD("SELECT * FROM Usuario WHERE id= " + id);
+		ResultSet resultSet = conection.queryBD("SELECT * FROM Usuario WHERE cedula= '" + cedula + "'");
 		
 		try {
 			if (resultSet != null && resultSet.next()) {
 				usuario = new Usuario(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getString("apellido"), 
-									resultSet.getString("cedula"), resultSet.getString("email"), resultSet.getString("password"));
+									resultSet.getString("cedula"), resultSet.getString("email"), resultSet.getString("pass"));
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
 		}
 		return usuario;
 	}
+	
 
 	public void update(Usuario entity) {
 		conection.updateBD("UPDATE Usuario SET nombre = " + entity.getNombre() + ", apellido = " + entity.getApellido() 
@@ -67,6 +68,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		ResultSet resultSet = conection.queryBD("SELECT * FROM public.Usuario");
 		
+		
 		try {
 			while (resultSet.next()) {
 				usuarios.add(new Usuario(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getString("apellido"), 
@@ -75,7 +77,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
 		}
-		return null;
+		return usuarios;
 	}
 
 }

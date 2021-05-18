@@ -1,21 +1,28 @@
 package ec.edu.ups.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ec.edu.ups.dao.FactoryDAO;
 import ec.edu.ups.dao.TelefonoDAO;
+import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Telefono;
+import ec.edu.ups.modelo.Usuario;
 
 /**
  * Servlet implementation class CreatePhoneController
  */
 public class CreatePhoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UsuarioDAO usuarioDAO;
+	private Usuario usuario;
 	private TelefonoDAO telefonoDAO;
 	private Telefono telefono;
        
@@ -24,15 +31,10 @@ public class CreatePhoneController extends HttpServlet {
      */
     public CreatePhoneController() {
         telefonoDAO = FactoryDAO.getFactoryDAO().getTelefonoDAO();
+        usuarioDAO = FactoryDAO.getFactoryDAO().getUsuarioDAO();
         telefono = new Telefono();
+        usuario = new Usuario();
     }
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		System.out.println("Create Phone inicialized....");
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,16 +47,33 @@ public class CreatePhoneController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			telefono.setNumero(request.getParameter("numero"));
-			telefono.setTipo(request.getParameter("tipo"));
-			telefono.setOperadora(request.getParameter("operadora"));
-			telefono.setUsuario(request.getParameter("usuario"));
+		String cedula = request.getParameter("cedula");
+		String numero = request.getParameter("numero");
+		String tipo = request.getParameter("tipo");
+		String operadora = request.getParameter("operadora");
+		String url = null;
 			
-			telefonoDAO.create(telefono);
+		
+		try {
+			usuario = usuarioDAO.read(cedula);
+			if (usuario != null) {
+				telefono.setNumero(numero);
+				telefono.setTipo(tipo);
+				telefono.setOperadora(operadora);
+				telefono.setUsuario(usuario);
+								
+				telefonoDAO.create(telefono);
+				
+				url = "/View/UserIndex.jsp";
+			} else {
+				url = "/View/Error/Error.html";
+			}
 		} catch (Exception e) {
-			response.getWriter().append("Error: ").append(e.getMessage());
+			url = "/View/Error/Error.html";
 		}
+		
+		request.getRequestDispatcher(url).forward(request, response);
+			
 	}
 
 }

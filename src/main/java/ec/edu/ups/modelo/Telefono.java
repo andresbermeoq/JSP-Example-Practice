@@ -55,6 +55,14 @@ public class Telefono implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "Telefono [codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora
+				+ ", usuario=" + usuario + "]";
+	}
+	
+	
 	
 	
 

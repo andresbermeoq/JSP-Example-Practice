@@ -14,6 +14,7 @@ public class ContextJDBC {
 	
 	private Statement statement = null;
 	private static ContextJDBC jdbc = null;
+	private static ContextJDBC jdbc2 = null;
 	
 	
 	public ContextJDBC() {
@@ -58,6 +59,14 @@ public class ContextJDBC {
 		}
 		
 		return jdbc;
+	}
+	
+	protected static ContextJDBC getContextJDBC2() {
+		if (jdbc2 == null) {
+			jdbc2 = new ContextJDBC();
+		}
+		
+		return jdbc2;
 	}
 	
 	

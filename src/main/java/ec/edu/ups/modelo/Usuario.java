@@ -65,12 +65,6 @@ public class Usuario implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", email="
-				+ email + ", password=" + password + "]";
-	}
 
 	public List<Telefono> getTelefonos() {
 		return telefonos;
@@ -78,6 +72,14 @@ public class Usuario implements Serializable {
 
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", email="
+				+ email + ", password=" + password + ", telefonos=" + telefonos + "]";
 	}	
+	
+	
 
 }
