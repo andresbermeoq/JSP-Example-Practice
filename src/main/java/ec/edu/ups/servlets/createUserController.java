@@ -43,6 +43,7 @@ public class createUserController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = null;
 		try {
 			usuario.setNombre(request.getParameter("nombre"));
 			usuario.setApellido(request.getParameter("apellido"));
@@ -51,9 +52,12 @@ public class createUserController extends HttpServlet {
 			usuario.setPassword(request.getParameter("password"));
 			
 			usuarioDAO.create(usuario);
+			url = "/index.jsp";
 		} catch (Exception e) {
-			response.getWriter().append("Error: ").append(e.getMessage());
+			url = "/View/Error/Error.html";
 		}
+		
+		request.getRequestDispatcher(url).forward(request, response);
 		
 	}
 

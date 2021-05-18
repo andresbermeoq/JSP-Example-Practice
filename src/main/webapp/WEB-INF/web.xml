@@ -3,6 +3,37 @@
 		 xmlns="http://Java.sun.com/xml/ns/j2ee" 
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<filter>
+		<description>
+		</description>
+		<display-name>FilterController</display-name>
+		<filter-name>FilterController</filter-name>
+		<filter-class>ec.edu.ups.filters.FilterController</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>createController</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>CreatePhoneController</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>createTablePhoneController</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>deletePhoneController</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>SearchUserController</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterController</filter-name>
+		<servlet-name>UpdatePhoneController</servlet-name>
+	</filter-mapping>
 	<servlet>
 		<display-name>createController</display-name>
 		<servlet-name>createController</servlet-name>

@@ -40,6 +40,14 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/View/Login.jsp").forward(request, response);
+		HttpSession session = request.getSession(true);
+		
+		System.out.println("Session: " + session);
+		
+		if (request.getParameter("logout") != null) {
+			session.invalidate();
+			response.sendRedirect("View/Login.jsp");
+		}
 	}
 
 	/**
@@ -54,6 +62,9 @@ public class LoginController extends HttpServlet {
 		int numVeces = 0;
 		
 		usuarios = usuarioDAO.find();
+		
+		System.out.println(email);
+		System.out.println(password);
 		
 		for(Usuario usuario: usuarios) {
 			
@@ -83,7 +94,7 @@ public class LoginController extends HttpServlet {
 				
 				break;
 			} else {
-				session.invalidate();
+				
 				url = "/View/Error/Error.html";
 			}
 			
